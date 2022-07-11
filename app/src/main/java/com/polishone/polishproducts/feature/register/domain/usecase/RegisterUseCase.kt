@@ -17,11 +17,10 @@ class RegisterUseCase @Inject constructor(private val repository: RegisterReposi
             emit(Resource.Loading())
             val registerResponse = repository.registerUser(registerBody)
             emit(Resource.Success(registerResponse))
-        } catch (e:HttpException){
-            emit(Resource.Error(e.localizedMessage ?:"An unexpected error occurred"))
-        } catch (e:IOException){
+        } catch (e: HttpException) {
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
+        } catch (e: IOException) {
             emit(Resource.Error("Couldn't reach server check your internet connection"))
         }
     }
-
 }
