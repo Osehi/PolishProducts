@@ -21,9 +21,10 @@ class RegisterViewModel @Inject constructor(
     val registerResponse: StateFlow<Resource<RegisterResponse>> get() = _registerResponse
 
     fun getRegistered(registerBody: RegisterRequestBody) {
-        viewModelScope.launch { registerUseCase(registerBody).collect {
-            _registerResponse.value = it
-        }
+        viewModelScope.launch {
+            registerUseCase(registerBody).collect {
+                _registerResponse.value = it
+            }
         }
     }
 }
