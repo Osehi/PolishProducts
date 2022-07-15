@@ -62,7 +62,7 @@ class RegisterFragment : Fragment() {
         /**
          * observe the response
          */
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registerViewModel.registerResponse.collect {
                     when (it) {
