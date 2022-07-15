@@ -44,8 +44,6 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRegisterBinding.bind(view)
 
-
-
         /**
          * register button
          */
@@ -63,7 +61,7 @@ class RegisterFragment : Fragment() {
          * observe the response
          */
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registerViewModel.registerResponse.collect {
                     when (it) {
                         is Resource.Success -> Log.d(TAG, "here is the success response: $it")
