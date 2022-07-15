@@ -39,7 +39,7 @@ android {
 }
 
 dependencies {
-    def lifecycle_version = "2.5.0-rc02"
+    def lifecycle_version = "2.6.0-alpha01"
     def fragment_version = "1.4.1"
     def nav_version = "2.5.0"
 
