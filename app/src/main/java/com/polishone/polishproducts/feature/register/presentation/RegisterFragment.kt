@@ -5,12 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.common.constants.Resource
+import com.polishone.polishproducts.common.utils.extensions.myDialog
 import com.polishone.polishproducts.databinding.FragmentRegisterBinding
 import com.polishone.polishproducts.feature.register.data.network.model.RegisterRequestBody
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +28,7 @@ class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private val registerViewModel: RegisterViewModel by viewModels()
+    private var dialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +60,8 @@ class RegisterFragment : Fragment() {
             Log.d(TAG, "HERE are the inputs: $name, $email, $password")
             val registerBody = RegisterRequestBody(email, name, password)
             registerViewModel.getRegistered(registerBody)
+            dialog = myDialog()
+            dialog!!.show()
         }
 
         /**
@@ -64,9 +71,29 @@ class RegisterFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registerViewModel.registerResponse.collect {
                     when (it) {
-                        is Resource.Success -> Log.d(TAG, "here is the success response: $it")
-                        is Resource.Error -> Log.d(TAG, "An error occured")
-                        is Resource.Loading -> Log.d(TAG, "Here is the loading state")
+                        is Resource.Success -> {
+//                            dialog = myDialog()
+                            dialog!!.dismiss()
+//                            Toast.makeText(requireContext(), "${it.data.message}", Toast.LENGTH_SHORT).show()
+                            Snackbar.make(
+                                binding.root,
+                                "${it.data.message}",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        }
+                        is Resource.Error -> {
+//                            dialog = myDialog()
+                            dialog!!.dismiss()
+                            Log.d(TAG, "An error occured")
+//                            Toast.makeText(requireContext(), "${it.data?.message}", Toast.LENGTH_SHORT).show()
+                            Snackbar.make(
+                                binding.root,
+                                "here is the error message:${it.data?.message}",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        }
+                        is Resource.Loading -> {
+                        }
                     }
                 }
             }

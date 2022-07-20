@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="register_fragment_header_txSise">24sp</dimen>
+    <dimen name="progress_dialog_alert_name_txsize">22sp</dimen>
 </resources>
