@@ -6,7 +6,9 @@ import com.polishone.polishproducts.feature.register.data.network.model.Register
 import com.polishone.polishproducts.feature.register.data.network.model.RegisterResponse
 import com.polishone.polishproducts.feature.register.domain.usecase.RegisterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
