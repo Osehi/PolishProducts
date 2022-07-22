@@ -10,4 +10,8 @@
         android:name="com.polishone.polishproducts.feature.register.presentation.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.polishone.polishproducts.feature.login.presentation.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>

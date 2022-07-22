@@ -6,7 +6,7 @@ import com.polishone.polishproducts.feature.register.data.network.model.Register
 import com.polishone.polishproducts.feature.register.domain.repository.RegisterRepository
 import javax.inject.Inject
 
-class RegisterRepositoryImpl @Inject constructor(private val registerApi: RegisterApi) : RegisterRepository{
+class RegisterRepositoryImpl @Inject constructor(private val registerApi: RegisterApi) : RegisterRepository {
     override suspend fun registerUser(registerRequest: RegisterRequestBody): RegisterResponse {
         return registerApi.registerUser(registerRequest)
     }
