@@ -5,12 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.polishone.polishproducts.R
 import com.polishone.polishproducts.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
     /**
      * declare variables and views
      */
+    private val TAG = "LOGINFRAGMENT"
+    private val loginViewModel: LoginViewModel by viewModels()
     private var _binding: FragmentLoginBinding? = null
     val binding get() = _binding!!
 
@@ -32,6 +38,11 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLoginBinding.bind(view)
+
+        // on click of Create account, navigate to "Register"
+        binding.loginFragmentCreateAccountTv.setOnClickListener {
+            findNavController().navigate(R.id.registerFragment)
+        }
     }
 
     override fun onDestroy() {
