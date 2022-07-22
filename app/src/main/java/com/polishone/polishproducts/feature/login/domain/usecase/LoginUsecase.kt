@@ -10,18 +10,17 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class LoginUsecase @Inject constructor(private val loginRepository: LoginRepository){
+class LoginUsecase @Inject constructor(private val loginRepository: LoginRepository) {
 
     operator fun invoke(loginRequest: LoginRequestBody): Flow<Resource<LoginResponse>> = flow {
         try {
             emit(Resource.Loading())
             val loginResponse = loginRepository.getUserLoggedIn(loginRequest)
             emit(Resource.Success(loginResponse))
-        } catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
-        } catch (e:IOException){
+        } catch (e: IOException) {
             emit(Resource.Error("Couldn't reach server check your internet connection"))
         }
     }
-
 }
