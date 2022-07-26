@@ -2,4 +2,6 @@
 <resources>
     <dimen name="register_fragment_header_txSise">24sp</dimen>
     <dimen name="progress_dialog_alert_name_txsize">22sp</dimen>
+    <dimen name="login_fragment_login_header_txsiz">24sp</dimen>
+    <dimen name="login_fragment_login_button_txsiz">22sp</dimen>
 </resources>
