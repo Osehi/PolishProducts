@@ -14,10 +14,12 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.Resource
+import com.polishone.polishproducts.common.utils.extensions.myDialog
 import com.polishone.polishproducts.databinding.FragmentLoginBinding
 import com.polishone.polishproducts.feature.login.data.network.model.LoginRequestBody
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     /**
      * declare variables and views
@@ -26,7 +28,7 @@ class LoginFragment : Fragment() {
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var receivedEmail: String
     private lateinit var receivedPassword: String
-    private val pleaseWaitDialog: AlertDialog? = null
+    private var pleaseWaitDialog: AlertDialog? = null
     private var _binding: FragmentLoginBinding? = null
     val binding get() = _binding!!
 
@@ -57,6 +59,7 @@ class LoginFragment : Fragment() {
             // no validation yet
             // perform the network call
             loginViewModel.getUserLoggeIn(LoginRequestBody(receivedEmail, receivedPassword))
+            pleaseWaitDialog = myDialog()
             pleaseWaitDialog?.let { it.show() }
         }
 

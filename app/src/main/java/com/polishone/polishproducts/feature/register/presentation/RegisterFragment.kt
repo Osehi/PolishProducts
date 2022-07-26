@@ -12,7 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.common.utils.extensions.myDialog
 import com.polishone.polishproducts.databinding.FragmentRegisterBinding
@@ -73,17 +75,18 @@ class RegisterFragment : Fragment() {
                     when (it) {
                         is Resource.Success -> {
 //                            dialog = myDialog()
-                            dialog!!.dismiss()
+                            dialog?.let { it.dismiss() }
 //                            Toast.makeText(requireContext(), "${it.data.message}", Toast.LENGTH_SHORT).show()
                             Snackbar.make(
                                 binding.root,
                                 "${it.data.message}",
                                 Snackbar.LENGTH_LONG
                             ).show()
+                            findNavController().navigate(R.id.loginFragment)
                         }
                         is Resource.Error -> {
 //                            dialog = myDialog()
-                            dialog!!.dismiss()
+                            dialog?.let { it.dismiss() }
                             Log.d(TAG, "An error occured")
 //                            Toast.makeText(requireContext(), "${it.data?.message}", Toast.LENGTH_SHORT).show()
                             Snackbar.make(
