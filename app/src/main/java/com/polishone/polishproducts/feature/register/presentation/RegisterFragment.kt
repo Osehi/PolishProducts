@@ -50,6 +50,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRegisterBinding.bind(view)
+        dialog = myDialog()
 
         /**
          * register button
@@ -62,7 +63,6 @@ class RegisterFragment : Fragment() {
             Log.d(TAG, "HERE are the inputs: $name, $email, $password")
             val registerBody = RegisterRequestBody(email, name, password)
             registerViewModel.getRegistered(registerBody)
-            dialog = myDialog()
             dialog!!.show()
         }
 
@@ -74,7 +74,7 @@ class RegisterFragment : Fragment() {
                 registerViewModel.registerResponse.collect {
                     when (it) {
                         is Resource.Success -> {
-//                            dialog = myDialog()
+
                             dialog?.let { it.dismiss() }
 //                            Toast.makeText(requireContext(), "${it.data.message}", Toast.LENGTH_SHORT).show()
                             Snackbar.make(
@@ -87,7 +87,7 @@ class RegisterFragment : Fragment() {
                         is Resource.Error -> {
 //                            dialog = myDialog()
                             dialog?.let { it.dismiss() }
-                            Log.d(TAG, "An error occured")
+                            Log.d(TAG, "An error occured: ${it.data?.message}")
 //                            Toast.makeText(requireContext(), "${it.data?.message}", Toast.LENGTH_SHORT).show()
                             Snackbar.make(
                                 binding.root,

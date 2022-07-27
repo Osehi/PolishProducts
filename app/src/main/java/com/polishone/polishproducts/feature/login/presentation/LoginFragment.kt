@@ -50,6 +50,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLoginBinding.bind(view)
+        pleaseWaitDialog = myDialog()
 
         // on click of the login button
         binding.loginFragmentLoginButtonBtn.setOnClickListener {
@@ -59,7 +60,6 @@ class LoginFragment : Fragment() {
             // no validation yet
             // perform the network call
             loginViewModel.getUserLoggeIn(LoginRequestBody(receivedEmail, receivedPassword))
-            pleaseWaitDialog = myDialog()
             pleaseWaitDialog?.let { it.show() }
         }
 
