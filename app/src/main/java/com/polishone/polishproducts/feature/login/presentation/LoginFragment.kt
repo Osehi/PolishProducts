@@ -2,7 +2,6 @@ package com.polishone.polishproducts.feature.login.presentation
 
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +39,8 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     val binding get() = _binding!!
 
+    lateinit var networkStatusHelper: NetworkStatusHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -52,24 +53,8 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val view = binding.root
-        NetworkStatusHelper(requireContext()).observe(viewLifecycleOwner) {
-            when (it) {
-                is NetworkStatus.Available -> {
-                    Snackbar.make(
-                        binding.root,
-                        "Network is available",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                }
-                is NetworkStatus.Unavailable -> {
-                    Snackbar.make(
-                        binding.root,
-                        "No internet, please check your internet",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                }
-            }
-        }
+
+//        val isNetworkAvailable
         return view
     }
 
@@ -77,8 +62,13 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLoginBinding.bind(view)
         pleaseWaitDialog = myDialog()
-        networkStatusChecker.performIfConnectedToInternet {
-            Log.d(TAG, "Working")
+        networkStatusHelper = NetworkStatusHelper(requireContext())
+        networkStatusHelper.observe(viewLifecycleOwner) {
+
+            binding.networkStatus.text = when (it) {
+                NetworkStatus.Unavailable -> display("There is no Internet")
+                NetworkStatus.Available -> display("There is Internet")
+            }
         }
 
         // on click of the login button
@@ -98,6 +88,10 @@ class LoginFragment : Fragment() {
         }
 
         initObserver()
+    }
+
+    fun display(msg: String): String {
+        return msg
     }
 
     private fun initObserver() {
