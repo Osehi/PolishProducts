@@ -32,7 +32,6 @@ class LoginFragment : Fragment() {
      */
     private val TAG = "LOGINFRAGMENT"
     private val loginViewModel: LoginViewModel by viewModels()
-    private val networkStatusChecker by lazy { NetworkStatusChecker(requireActivity().getSystemService(ConnectivityManager::class.java)) }
     private lateinit var receivedEmail: String
     private lateinit var receivedPassword: String
     private var pleaseWaitDialog: AlertDialog? = null
