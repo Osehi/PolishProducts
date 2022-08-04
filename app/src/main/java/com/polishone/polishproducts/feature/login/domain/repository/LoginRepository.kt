@@ -5,5 +5,5 @@ import com.polishone.polishproducts.feature.login.data.network.model.LoginRespon
 
 interface LoginRepository {
 
-    suspend fun getUserLoggedIn(LoginRequest: LoginRequestBody): LoginResponse
+    suspend fun getUserLoggedIn(loginRequestBody: LoginRequestBody): LoginResponse
 }
