@@ -1,8 +1,6 @@
 package com.polishone.polishproducts.common.utils.networkstatuschecker
 
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-
+/*
 class NetworkStatusChecker(private val connectivityManager: ConnectivityManager?) {
 
     inline fun performIfConnectedToInternet(action: () -> Unit) {
@@ -20,3 +18,5 @@ class NetworkStatusChecker(private val connectivityManager: ConnectivityManager?
             capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)
     }
 }
+
+ */
