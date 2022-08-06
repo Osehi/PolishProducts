@@ -1,5 +1,6 @@
 package com.polishone.polishproducts.feature.login.presentation
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.common.utils.extensions.myDialog
+import com.polishone.polishproducts.common.utils.networkstatus.NetworkStatus
+import com.polishone.polishproducts.common.utils.networkstatus.NetworkStatusHelper
 import com.polishone.polishproducts.databinding.FragmentLoginBinding
 import com.polishone.polishproducts.feature.login.data.network.model.LoginRequestBody
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +35,8 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     val binding get() = _binding!!
 
+    lateinit var networkStatusHelper: NetworkStatusHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -44,12 +49,23 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val view = binding.root
+
+//        val isNetworkAvailable
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLoginBinding.bind(view)
+        pleaseWaitDialog = myDialog()
+        networkStatusHelper = NetworkStatusHelper(requireContext())
+        networkStatusHelper.observe(viewLifecycleOwner) {
+
+            binding.networkStatus.text = when (it) {
+                NetworkStatus.Unavailable -> display("There is no Internet")
+                NetworkStatus.Available -> display("There is Internet")
+            }
+        }
 
         // on click of the login button
         binding.loginFragmentLoginButtonBtn.setOnClickListener {
@@ -59,7 +75,6 @@ class LoginFragment : Fragment() {
             // no validation yet
             // perform the network call
             loginViewModel.getUserLoggeIn(LoginRequestBody(receivedEmail, receivedPassword))
-            pleaseWaitDialog = myDialog()
             pleaseWaitDialog?.let { it.show() }
         }
 
@@ -71,11 +86,15 @@ class LoginFragment : Fragment() {
         initObserver()
     }
 
-    private fun initObserver(){
+    fun display(msg: String): String {
+        return msg
+    }
+
+    private fun initObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 loginViewModel.loginResponse.collect {
-                    when(it){
+                    when (it) {
                         is Resource.Success -> {
                             pleaseWaitDialog?.let { it.dismiss() }
                             Snackbar.make(
@@ -93,7 +112,6 @@ class LoginFragment : Fragment() {
                             ).show()
                         }
                         is Resource.Loading -> {
-
                         }
                     }
                 }

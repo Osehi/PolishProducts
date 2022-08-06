@@ -9,7 +9,7 @@ import javax.inject.Inject
 class LoginRepositoryImpl @Inject constructor(
     private val loginApi: LoginApi
 ) : LoginRepository {
-    override suspend fun getUserLoggedIn(loginRequest: LoginRequestBody): LoginResponse {
-        return loginApi.loginUser(loginRequest)
+    override suspend fun getUserLoggedIn(loginRequestBody: LoginRequestBody): LoginResponse {
+        return loginApi.loginUser(loginRequestBody)
     }
 }

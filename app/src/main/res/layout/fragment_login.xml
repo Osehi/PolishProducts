@@ -121,5 +121,23 @@
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <TextView
+        android:id="@+id/network_status"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="connectivity state"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        />
+    <TextView
+        android:id="@+id/network_status_two"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="connectivity state two"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        />
 </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>
