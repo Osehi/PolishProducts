@@ -1,13 +1,10 @@
 package com.polishone.polishproducts.feature.login.presentation
 
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -20,7 +17,6 @@ import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.common.utils.extensions.myDialog
 import com.polishone.polishproducts.common.utils.networkstatus.NetworkStatus
 import com.polishone.polishproducts.common.utils.networkstatus.NetworkStatusHelper
-import com.polishone.polishproducts.common.utils.networkstatuschecker.NetworkStatusChecker
 import com.polishone.polishproducts.databinding.FragmentLoginBinding
 import com.polishone.polishproducts.feature.login.data.network.model.LoginRequestBody
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +28,6 @@ class LoginFragment : Fragment() {
      */
     private val TAG = "LOGINFRAGMENT"
     private val loginViewModel: LoginViewModel by viewModels()
-    private val networkStatusChecker by lazy { NetworkStatusChecker(requireActivity().getSystemService(ConnectivityManager::class.java)) }
     private lateinit var receivedEmail: String
     private lateinit var receivedPassword: String
     private var pleaseWaitDialog: AlertDialog? = null
