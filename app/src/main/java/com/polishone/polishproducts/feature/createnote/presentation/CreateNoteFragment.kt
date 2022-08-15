@@ -25,10 +25,12 @@ class CreateNoteFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentCreateNoteBinding.inflate(inflater, container, false)
-        return binding.root
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentCreateNoteBinding.bind(view)
     }
 }

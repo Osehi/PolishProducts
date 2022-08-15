@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#0B5B0D</color>
+    <color name="priorityLow">#1aff8c</color>
+    <color name="priorityMedium">#ffcc00</color>
+    <color name="priorityHigh">#ff4d4d</color>
+    <color name="default_background">#EEEEEE</color>
 </resources>

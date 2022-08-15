@@ -4,4 +4,6 @@
     <dimen name="progress_dialog_alert_name_txsize">22sp</dimen>
     <dimen name="login_fragment_login_header_txsiz">24sp</dimen>
     <dimen name="login_fragment_login_button_txsiz">22sp</dimen>
+    <dimen name="create_note_fragment_title_txsiz">24sp</dimen>
+    <dimen name="create_note_fragment_content_txsiz">18sp</dimen>
 </resources>
