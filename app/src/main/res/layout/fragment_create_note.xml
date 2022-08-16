@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/create_note_fragment_task_tv"
         android:padding="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/create_note_fragment_task_title_til"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
         app:hintEnabled="false"
@@ -43,7 +43,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/create_note_fragment_task_content_til"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
         app:hintEnabled="false"
@@ -63,24 +63,24 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
-        android:id="@+id/edit_budget_fragment_buget_period_spinner"
+        android:id="@+id/create_note_fragment_buget_period_spinner"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_marginTop="32dp"
         android:padding="4dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:entries="@array/priority"
         android:background="@drawable/spinner_bg"
         />
 
     <Button
-        android:id="@+id/login_fragment_login_button_btn"
+        android:id="@+id/create_note_fragment_save_task_button_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/login_button_bg"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/create_note_fragment_task_save"

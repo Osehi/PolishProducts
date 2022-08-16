@@ -13,4 +13,9 @@
         android:name="com.polishone.polishproducts.feature.register.presentation.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="com.polishone.polishproducts.feature.createnote.presentation.CreateNoteFragment"
+        android:label="fragment_create_note"
+        tools:layout="@layout/fragment_create_note" />
 </navigation>
