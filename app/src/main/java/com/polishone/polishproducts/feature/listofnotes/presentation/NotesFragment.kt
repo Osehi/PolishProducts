@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.polishone.polishproducts.R
 import com.polishone.polishproducts.databinding.FragmentNotesBinding
 
@@ -26,10 +27,20 @@ class NotesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes, container, false)
+        _binding = FragmentNotesBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentNotesBinding.bind(view)
 
+        // on fab, navigate to createNoteFragment
+        binding.notesFragmentFab.setOnClickListener {
+            findNavController().navigate(R.id.createNoteFragment)
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
