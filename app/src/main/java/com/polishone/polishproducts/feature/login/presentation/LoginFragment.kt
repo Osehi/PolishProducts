@@ -15,12 +15,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.common.utils.extensions.myDialog
-import com.polishone.polishproducts.common.utils.networkstatus.NetworkStatus
 import com.polishone.polishproducts.common.utils.networkstatus.NetworkStatusHelper
+import com.polishone.polishproducts.common.utils.uihelpers.hideKeyboard
 import com.polishone.polishproducts.databinding.FragmentLoginBinding
 import com.polishone.polishproducts.feature.login.data.network.model.LoginRequestBody
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     /**
@@ -57,6 +58,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLoginBinding.bind(view)
         pleaseWaitDialog = myDialog()
+        /*
         networkStatusHelper = NetworkStatusHelper(requireContext())
         networkStatusHelper.observe(viewLifecycleOwner) {
 
@@ -65,16 +67,26 @@ class LoginFragment : Fragment() {
                 NetworkStatus.Available -> display("There is Internet")
             }
         }
+         */
 
         // on click of the login button
         binding.loginFragmentLoginButtonBtn.setOnClickListener {
+            hideKeyboard()
             // receive values from the input fields
             receivedEmail = binding.loginFragmentEmailTextinputlayoutEmailTiedt.text.toString()
             receivedPassword = binding.loginFragmentEmailTextinputlayoutPasswordTiedt.text.toString()
             // no validation yet
-            // perform the network call
-            loginViewModel.getUserLoggeIn(LoginRequestBody(receivedEmail, receivedPassword))
-            pleaseWaitDialog?.let { it.show() }
+            if (receivedEmail.isEmpty() || receivedPassword.isEmpty()) {
+                Snackbar.make(
+                    binding.root,
+                    "Input fields cannot be empty",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            } else {
+                // perform the network call
+                loginViewModel.getUserLoggeIn(LoginRequestBody(receivedEmail, receivedPassword))
+                pleaseWaitDialog?.let { it.show() }
+            }
         }
 
         // on click of Create account, navigate to "Register"
@@ -98,15 +110,16 @@ class LoginFragment : Fragment() {
                             pleaseWaitDialog?.let { it.dismiss() }
                             Snackbar.make(
                                 binding.root,
-                                "You have successfuly loggin: ${it.data.token}",
+                                "You have successfully logged in",
                                 Snackbar.LENGTH_LONG
                             ).show()
+                            findNavController().navigate(R.id.notesFragment)
                         }
                         is Resource.Error -> {
                             pleaseWaitDialog?.let { it.dismiss() }
                             Snackbar.make(
                                 binding.root,
-                                "You have successfuly loggin: ${it.message}",
+                                "${it.message}",
                                 Snackbar.LENGTH_LONG
                             ).show()
                         }

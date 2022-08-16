@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.common.utils.extensions.myDialog
+import com.polishone.polishproducts.common.utils.uihelpers.hideKeyboard
 import com.polishone.polishproducts.databinding.FragmentRegisterBinding
 import com.polishone.polishproducts.feature.register.data.network.model.RegisterRequestBody
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,14 +56,25 @@ class RegisterFragment : Fragment() {
          * register button
          */
         binding.registerFragmentButton.setOnClickListener {
+            hideKeyboard()
             // get the name, email and password to register
             val name = binding.registerFragmentTextinputedittextName.text.toString()
             val email = binding.registerFragmentTextinputedittextEmail.text.toString()
             val password = binding.registerFragmentTextinputedittextPassword.text.toString()
             Log.d(TAG, "HERE are the inputs: $name, $email, $password")
-            val registerBody = RegisterRequestBody(email, name, password)
-            registerViewModel.getRegistered(registerBody)
-            dialog!!.show()
+            // validate input fields
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                Snackbar.make(
+                    binding.root,
+                    "Input fields cannot be empty",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            } else {
+                val registerBody = RegisterRequestBody(email, name, password)
+                registerViewModel.getRegistered(registerBody)
+                dialog?.let { it.show() }
+            }
+
         }
 
         /**
