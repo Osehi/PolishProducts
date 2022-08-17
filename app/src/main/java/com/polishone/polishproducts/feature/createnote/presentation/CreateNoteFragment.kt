@@ -1,6 +1,7 @@
 package com.polishone.polishproducts.feature.createnote.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.common.utils.extensions.myDialog
 import com.polishone.polishproducts.common.utils.stattisticdata.PriorityData
+import com.polishone.polishproducts.common.utils.uihelpers.setPriorityToNumber
 import com.polishone.polishproducts.databinding.FragmentCreateNoteBinding
 import com.polishone.polishproducts.feature.createnote.data.model.CreateNoteRequestBody
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,6 +64,7 @@ class CreateNoteFragment : Fragment() {
         binding.createNoteFragmentBugetPeriodSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedPriority = parent?.getItemAtPosition(position).toString()
+                Log.d(TAG, "Hello here is the content: ${selectedPriority}")
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -83,7 +86,7 @@ class CreateNoteFragment : Fragment() {
             } else {
                 // make a network call
                 createNoteViewModel.userCreateNote(
-                    CreateNoteRequestBody(taskContent, selectedPriority.toInt(), taskTitle)
+                    CreateNoteRequestBody(taskContent, setPriorityToNumber(selectedPriority), taskTitle)
                 )
                 pleaseWaitDialog?.let { it.show() }
             }

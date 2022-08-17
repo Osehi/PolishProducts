@@ -13,3 +13,13 @@ fun Fragment.hideKeyboard(){
     }
     hideKeyboard.hideSoftInputFromWindow(currentFocus.windowToken, 0)
 }
+
+fun Fragment.setPriorityToNumber(priority: String): Int {
+   val priorityNum: Int = when(priority) {
+        "Low" -> 1
+        "Medium" -> 2
+        "High" -> 3
+       else -> 0
+    }
+    return priorityNum
+}
