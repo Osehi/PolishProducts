@@ -5,5 +5,5 @@ import com.polishone.polishproducts.feature.createnote.data.model.CreateNoteResp
 
 interface CreateNoteRepository {
 
-    fun createNote(createNoteRequestBody: CreateNoteRequestBody): CreateNoteResponse
+    suspend fun createNote(createNoteRequestBody: CreateNoteRequestBody): CreateNoteResponse
 }

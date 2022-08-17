@@ -121,6 +121,7 @@
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <!--
     <TextView
         android:id="@+id/network_status"
         android:layout_marginTop="12dp"
@@ -130,6 +131,7 @@
         android:textSize="22sp"
         android:textAlignment="center"
         />
+
     <TextView
         android:id="@+id/network_status_two"
         android:layout_marginTop="12dp"
@@ -139,5 +141,6 @@
         android:textSize="22sp"
         android:textAlignment="center"
         />
+        -->
 </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

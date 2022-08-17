@@ -7,7 +7,7 @@ import com.polishone.polishproducts.feature.createnote.domain.repository.CreateN
 import javax.inject.Inject
 
 class CreateNoteRepositoryImpl @Inject constructor(private val createNoteApi: CreateNoteApi) : CreateNoteRepository {
-    override fun createNote(createNoteRequestBody: CreateNoteRequestBody): CreateNoteResponse {
+    override suspend fun createNote(createNoteRequestBody: CreateNoteRequestBody): CreateNoteResponse {
         return createNoteApi.createNote(createNoteRequestBody)
     }
 }
