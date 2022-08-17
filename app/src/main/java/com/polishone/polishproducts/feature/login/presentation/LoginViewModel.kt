@@ -23,9 +23,9 @@ class LoginViewModel @Inject constructor(
     private val _loginResponse = MutableSharedFlow<Resource<LoginResponse>>()
     val loginResponse: SharedFlow<Resource<LoginResponse>> get() = _loginResponse.asSharedFlow()
 
-    fun getUserLoggeIn(loginRequest: LoginRequestBody) {
+    fun getUserLoggeIn(loginRequestBody: LoginRequestBody) {
         viewModelScope.launch {
-            loginUsecase(loginRequest).collect {
+            loginUsecase(loginRequestBody).collect {
                 _loginResponse.emit(it)
             }
         }

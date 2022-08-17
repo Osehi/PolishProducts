@@ -12,10 +12,10 @@ import javax.inject.Inject
 
 class LoginUsecase @Inject constructor(private val loginRepository: LoginRepository) {
 
-    operator fun invoke(loginRequest: LoginRequestBody): Flow<Resource<LoginResponse>> = flow {
+    operator fun invoke(loginRequestBody: LoginRequestBody): Flow<Resource<LoginResponse>> = flow {
         try {
             emit(Resource.Loading())
-            val loginResponse = loginRepository.getUserLoggedIn(loginRequest)
+            val loginResponse = loginRepository.getUserLoggedIn(loginRequestBody)
             emit(Resource.Success(loginResponse))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))

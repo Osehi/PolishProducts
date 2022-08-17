@@ -1,6 +1,11 @@
 package com.polishone.polishproducts.common.utils.networkstatuschecker
 
+
 import android.net.ConnectivityManager
+
+
+/*
+class NetworkStatusChecker(private val connectivityManager: ConnectivityManager?) {
 
 
 class NetworkStatusChecker(private val connectivityManager: ConnectivityManager?) {
@@ -22,3 +27,5 @@ class NetworkStatusChecker(private val connectivityManager: ConnectivityManager?
 
      */
 }
+
+ */
