@@ -64,7 +64,7 @@ class CreateNoteFragment : Fragment() {
         binding.createNoteFragmentBugetPeriodSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedPriority = parent?.getItemAtPosition(position).toString()
-                Log.d(TAG, "Hello here is the content: ${selectedPriority}")
+                Log.d(TAG, "Hello here is the content: $selectedPriority")
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -95,11 +95,11 @@ class CreateNoteFragment : Fragment() {
         initObserver()
     }
 
-    private fun initObserver(){
+    private fun initObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 createNoteViewModel.createNoteResponse.collect {
-                    when(it) {
+                    when (it) {
                         is Resource.Success -> {
                             pleaseWaitDialog?.let { it.dismiss() }
                             Snackbar.make(
@@ -117,7 +117,6 @@ class CreateNoteFragment : Fragment() {
                             ).show()
                         }
                         is Resource.Loading -> {
-
                         }
                     }
                 }
