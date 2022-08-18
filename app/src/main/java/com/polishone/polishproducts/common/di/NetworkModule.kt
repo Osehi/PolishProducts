@@ -1,9 +1,12 @@
 package com.polishone.polishproducts.common.di
 
+import android.content.Context
 import com.polishone.polishproducts.common.constants.NetworkConstants
+import com.polishone.polishproducts.common.utils.errorhelper.ExceptionHandler
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -60,6 +63,12 @@ object NetworkModule {
             .client(client)
             .addConverterFactory(gsonConverterFactory)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideErrorHandler(@ApplicationContext context: Context): ExceptionHandler {
+        return ExceptionHandler(context)
     }
 
 
