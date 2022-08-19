@@ -3,6 +3,9 @@ package com.polishone.polishproducts.common.di
 import android.content.Context
 import com.polishone.polishproducts.common.constants.NetworkConstants
 import com.polishone.polishproducts.common.utils.errorhelper.ExceptionHandler
+import com.polishone.polishproducts.common.utils.headerinterceptor.HeaderInterceptor
+import com.polishone.polishproducts.data.sharedpreference.PolishPreferences
+import com.polishone.polishproducts.data.sharedpreference.Preferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,12 +45,13 @@ object NetworkModule {
      */
     @Provides
     @Singleton
-    fun provideOkHttp(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttp(loggingInterceptor: HttpLoggingInterceptor, headerInterceptor: HeaderInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(120L, TimeUnit.SECONDS)
             .readTimeout(120L, TimeUnit.SECONDS)
             .writeTimeout(120L, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(headerInterceptor)
             .build()
     }
 
@@ -71,7 +75,9 @@ object NetworkModule {
         return ExceptionHandler(context)
     }
 
-
-
-
+    @Provides
+    @Singleton
+    fun provideSharedPreference(@ApplicationContext context: Context): Preferences {
+        return PolishPreferences(context)
+    }
 }

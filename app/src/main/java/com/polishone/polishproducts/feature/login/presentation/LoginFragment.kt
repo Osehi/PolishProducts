@@ -17,16 +17,20 @@ import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.common.utils.extensions.myDialog
 import com.polishone.polishproducts.common.utils.networkstatus.NetworkStatusHelper
 import com.polishone.polishproducts.common.utils.uihelpers.hideKeyboard
+import com.polishone.polishproducts.data.sharedpreference.Preferences
 import com.polishone.polishproducts.databinding.FragmentLoginBinding
 import com.polishone.polishproducts.feature.login.data.network.model.LoginRequestBody
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     /**
      * declare variables and views
      */
+    @Inject
+    lateinit var preferences: Preferences
     private val TAG = "LOGINFRAGMENT"
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var receivedEmail: String
@@ -108,6 +112,10 @@ class LoginFragment : Fragment() {
                     when (it) {
                         is Resource.Success -> {
                             pleaseWaitDialog?.let { it.dismiss() }
+                            val token = it.data.token
+                            if (token != null) {
+                                preferences.putToken(token)
+                            }
                             Snackbar.make(
                                 binding.root,
                                 "You have successfully logged in",
