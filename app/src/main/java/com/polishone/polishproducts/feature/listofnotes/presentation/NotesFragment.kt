@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.Resource
@@ -27,6 +28,8 @@ class NotesFragment : Fragment() {
     private var _binding: FragmentNotesBinding? = null
     val binding: FragmentNotesBinding get() = _binding!!
     private val getTasksViewModel: GetTasksViewModel by viewModels()
+    private lateinit var displayTaskAdapter: DisplayTaskAdapter
+    private lateinit var myRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
