@@ -11,11 +11,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.databinding.FragmentNotesBinding
+import com.polishone.polishproducts.feature.listofnotes.data.model.Note
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -49,6 +51,10 @@ class NotesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentNotesBinding.bind(view)
+        // initialize views and variables
+        myRecyclerView = binding.notesFragmentRecyclerview
+        myRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+
         // activate the viewModel
         getTasksViewModel.getAllTasks()
 
@@ -72,6 +78,13 @@ class NotesFragment : Fragment() {
                                 Snackbar.LENGTH_LONG
                             ).show()
                             Log.d(TAG, "${it.data.notes}")
+                            val allNotes: List<Note?>? = it.data.notes
+//                            for (item in ) {
+//
+//                            }
+                            displayTaskAdapter = DisplayTaskAdapter(allNotes)
+                            myRecyclerView.adapter = displayTaskAdapter
+                            displayTaskAdapter.notifyDataSetChanged()
                         }
                         is Resource.Error -> {
                             Snackbar.make(
