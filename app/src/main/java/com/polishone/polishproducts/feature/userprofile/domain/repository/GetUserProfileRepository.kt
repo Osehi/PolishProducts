@@ -1,4 +1,4 @@
-package com.polishone.polishproducts.feature.userprofile.domain
+package com.polishone.polishproducts.feature.userprofile.domain.repository
 
 import com.polishone.polishproducts.feature.userprofile.data.network.model.GetUserProfileResponse
 

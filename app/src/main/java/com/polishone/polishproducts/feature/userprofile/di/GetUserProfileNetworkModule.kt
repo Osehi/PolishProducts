@@ -1,6 +1,8 @@
 package com.polishone.polishproducts.feature.userprofile.di
 
 import com.polishone.polishproducts.feature.userprofile.data.network.api.GetUserProfileApi
+import com.polishone.polishproducts.feature.userprofile.data.network.repository.GetUserProfileRepositoryImpl
+import com.polishone.polishproducts.feature.userprofile.domain.repository.GetUserProfileRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,5 +18,11 @@ object GetUserProfileNetworkModule {
     @Singleton
     fun provideGetUserProfileApi(retrofit: Retrofit): GetUserProfileApi {
         return retrofit.create(GetUserProfileApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetUserRepository(getUserProfileApi: GetUserProfileApi) : GetUserProfileRepository {
+        return GetUserProfileRepositoryImpl(getUserProfileApi)
     }
 }
