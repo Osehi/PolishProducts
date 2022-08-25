@@ -6,12 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.feature.userprofile.data.network.model.GetUserProfileResponse
 import com.polishone.polishproducts.feature.userprofile.domain.usecase.GetUserProfileUsecase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+@HiltViewModel
 class UserProfileViewModel @Inject constructor(
     private val userProfileUsecase: GetUserProfileUsecase,
     private val savedStateHandle: SavedStateHandle

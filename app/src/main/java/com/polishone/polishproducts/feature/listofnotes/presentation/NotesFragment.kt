@@ -60,7 +60,8 @@ class NotesFragment : Fragment() {
 
         // on fab, navigate to createNoteFragment
         binding.notesFragmentFab.setOnClickListener {
-            findNavController().navigate(R.id.createNoteFragment)
+//            findNavController().navigate(R.id.createNoteFragment)
+            findNavController().navigate(R.id.userProfileFragment)
         }
 
         initObserver()

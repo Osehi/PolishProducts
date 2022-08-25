@@ -1,14 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.userprofile.presentation.UserProfileFragment">
+    android:orientation="vertical"
+    tools:context=".feature.userprofile.presentation.UserProfileFragment"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/userProfile_fragment_profile_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/userProfile_fragment_profile_title"
+        android:textSize="@dimen/userProfile_fragment_profile_title_txsize" />
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        >
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/userProfile_fragment_username_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/aclonica"
+            android:padding="4dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/userProfile_fragment_username"
+            android:textSize="@dimen/userProfile_fragment_username_txsiz" />
+        <TextView
+            android:id="@+id/userProfile_fragment_username_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aclonica"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:textSize="@dimen/userProfile_fragment_username_txsiz"
+            android:text="@string/userProfile_fragment_username"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        >
+
+        <TextView
+            android:id="@+id/userProfile_fragment_email_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/aclonica"
+            android:padding="4dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/userProfile_fragment_email"
+            android:textSize="@dimen/userProfile_fragment_username_txsiz" />
+        <TextView
+            android:id="@+id/userProfile_fragment_email_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aclonica"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:textSize="@dimen/userProfile_fragment_username_txsiz"
+            android:text="@string/userProfile_fragment_email"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        >
+
+        <TextView
+            android:id="@+id/userProfile_fragment_numberOfNotes_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/aclonica"
+            android:padding="4dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/userProfile_fragment_note_count"
+            android:textSize="@dimen/userProfile_fragment_username_txsiz" />
+        <TextView
+            android:id="@+id/userProfile_fragment_numberOfNotes_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aclonica"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:textSize="@dimen/userProfile_fragment_username_txsiz"
+            android:text="@string/userProfile_fragment_note_count_value"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <Button
+        android:id="@+id/register_fragment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="32dp"
+        android:textColor="@color/white"
+        android:background="@drawable/register_button_bg"
+        android:fontFamily="@font/aclonica"
+        android:text="@string/userProfile_fragment_logOut"
+        android:textAllCaps="false"
+        android:textSize="@dimen/register_fragment_header_txSise" />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
