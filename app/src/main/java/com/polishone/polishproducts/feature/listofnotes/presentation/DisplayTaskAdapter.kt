@@ -11,7 +11,7 @@ import com.polishone.polishproducts.databinding.CreateNoteItemBinding
 import com.polishone.polishproducts.feature.listofnotes.data.model.Note
 import kotlinx.coroutines.NonDisposableHandle.parent
 
-class DisplayTaskAdapter(private val notes: List<Note>) : RecyclerView.Adapter<DisplayTaskAdapter.DisplayTaskViewHolder>() {
+class DisplayTaskAdapter(private val notes: List<Note?>?) : RecyclerView.Adapter<DisplayTaskAdapter.DisplayTaskViewHolder>() {
 
     inner class DisplayTaskViewHolder(private val binding: CreateNoteItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Note, context: Context) {
@@ -35,11 +35,13 @@ class DisplayTaskAdapter(private val notes: List<Note>) : RecyclerView.Adapter<D
     }
 
     override fun onBindViewHolder(holder: DisplayTaskViewHolder, position: Int) {
-        val currentItem = notes[position]
-        holder.bind(currentItem, holder.itemView.context)
+        val currentItem = notes?.get(position)
+        if (currentItem != null) {
+            holder.bind(currentItem, holder.itemView.context)
+        }
     }
 
     override fun getItemCount(): Int {
-        return notes.size
+        return notes?.size!!
     }
 }

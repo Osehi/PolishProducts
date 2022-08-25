@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.Resource
@@ -107,6 +108,7 @@ class CreateNoteFragment : Fragment() {
                                 "Note is successfully created",
                                 Snackbar.LENGTH_LONG
                             ).show()
+                            findNavController().navigate(R.id.notesFragment)
                         }
                         is Resource.Error -> {
                             pleaseWaitDialog?.let { it.dismiss() }
