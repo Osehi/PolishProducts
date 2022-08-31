@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/drawable/register_button_bg.xml" value="0.234" />
         <entry key="app/src/main/res/drawable/spinner_bg.xml" value="0.202" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11614583333333334" />
-        <entry key="app/src/main/res/layout/create_note_item.xml" value="0.16394927536231885" />
+        <entry key="app/src/main/res/layout/create_note_item.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_create_note.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_notes.xml" value="0.14583333333333334" />
@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/fragment_user_profile.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/spinner_list_item.xml" value="0.25729166666666664" />
+        <entry key="app/src/main/res/menu/task_menu.xml" value="0.25833333333333336" />
       </map>
     </option>
   </component>
