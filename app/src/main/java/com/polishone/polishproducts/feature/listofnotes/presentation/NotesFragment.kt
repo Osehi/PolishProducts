@@ -60,11 +60,11 @@ class NotesFragment : Fragment() {
 
         // on fab, navigate to createNoteFragment
         binding.notesFragmentFab.setOnClickListener {
-//            findNavController().navigate(R.id.createNoteFragment)
-            findNavController().navigate(R.id.userProfileFragment)
+            findNavController().navigate(R.id.createNoteFragment)
         }
 
         initObserver()
+//        setRecyclerviewScrollingListener()
     }
 
     private fun initObserver() {
@@ -105,5 +105,18 @@ class NotesFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    fun setRecyclerviewScrollingListener() {
+        myRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val totalItemCount = recyclerView.layoutManager?.itemCount
+                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                if (totalItemCount == lastVisibleItemPosition + 1) {
+                    getTasksViewModel.getAllTasks()
+                }
+            }
+        })
     }
 }
