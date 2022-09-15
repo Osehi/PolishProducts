@@ -73,11 +73,7 @@ class NotesFragment : Fragment() {
                 getTasksViewModel.getTasksResponse.collect {
                     when (it) {
                         is Resource.Success -> {
-                            Snackbar.make(
-                                binding.root,
-                                "Success",
-                                Snackbar.LENGTH_LONG
-                            ).show()
+                            binding.progressBar.visibility = View.INVISIBLE
                             Log.d(TAG, "${it.data.notes}")
                             val allNotes: List<Note?>? = it.data.notes
 //                            for (item in ) {
@@ -95,6 +91,8 @@ class NotesFragment : Fragment() {
                             ).show()
                         }
                         is Resource.Loading -> {
+                            Log.d(TAG, "is it sensing loading: $it")
+                            binding.progressBar.visibility = View.VISIBLE
                         }
                     }
                 }
