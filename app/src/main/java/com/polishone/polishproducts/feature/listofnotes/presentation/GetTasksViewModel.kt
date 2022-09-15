@@ -19,7 +19,7 @@ class GetTasksViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
-    private val _getTasksResponse = MutableSharedFlow<Resource<GetTaskResponse>>()
+    private val _getTasksResponse = MutableSharedFlow<Resource<GetTaskResponse>>(1)
     val getTasksResponse: SharedFlow<Resource<GetTaskResponse>> get() = _getTasksResponse.asSharedFlow()
 
     fun getAllTasks() {

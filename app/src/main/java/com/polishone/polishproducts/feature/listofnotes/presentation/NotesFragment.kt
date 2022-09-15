@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -22,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class NotesFragment : Fragment() {
+class NotesFragment : Fragment(), TaskClicker {
     /**
      * declare views and variables
      */
@@ -60,11 +61,11 @@ class NotesFragment : Fragment() {
 
         // on fab, navigate to createNoteFragment
         binding.notesFragmentFab.setOnClickListener {
-//            findNavController().navigate(R.id.createNoteFragment)
-            findNavController().navigate(R.id.userProfileFragment)
+            findNavController().navigate(R.id.createNoteFragment)
         }
 
         initObserver()
+//        setRecyclerviewScrollingListener()
     }
 
     private fun initObserver() {
@@ -73,17 +74,13 @@ class NotesFragment : Fragment() {
                 getTasksViewModel.getTasksResponse.collect {
                     when (it) {
                         is Resource.Success -> {
-                            Snackbar.make(
-                                binding.root,
-                                "Success",
-                                Snackbar.LENGTH_LONG
-                            ).show()
+                            binding.progressBar.visibility = View.INVISIBLE
                             Log.d(TAG, "${it.data.notes}")
                             val allNotes: List<Note?>? = it.data.notes
 //                            for (item in ) {
 //
 //                            }
-                            displayTaskAdapter = DisplayTaskAdapter(allNotes)
+                            displayTaskAdapter = DisplayTaskAdapter(allNotes, this@NotesFragment)
                             myRecyclerView.adapter = displayTaskAdapter
                             displayTaskAdapter.notifyDataSetChanged()
                         }
@@ -95,6 +92,8 @@ class NotesFragment : Fragment() {
                             ).show()
                         }
                         is Resource.Loading -> {
+                            Log.d(TAG, "is it sensing loading: $it")
+                            binding.progressBar.visibility = View.VISIBLE
                         }
                     }
                 }
@@ -105,5 +104,30 @@ class NotesFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    fun setRecyclerviewScrollingListener() {
+        myRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val totalItemCount = recyclerView.layoutManager?.itemCount
+                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                if (totalItemCount == lastVisibleItemPosition + 1) {
+                    getTasksViewModel.getAllTasks()
+                }
+            }
+        })
+    }
+
+    override fun onclickItem(currentTask: Note, position: Int) {
+        Toast.makeText(
+            requireContext(),
+            "here is the item content clicked: ${currentTask.title}",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    override fun onClickItemEllipses(currentTask: Note, position: Int, view: View) {
+        TODO("Not yet implemented")
     }
 }

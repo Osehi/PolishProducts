@@ -9,13 +9,13 @@ import com.polishone.polishproducts.common.utils.priority.PriorityColor
 import com.polishone.polishproducts.common.utils.priority.SetPriorityColor
 import com.polishone.polishproducts.databinding.CreateNoteItemBinding
 import com.polishone.polishproducts.feature.listofnotes.data.model.Note
-import kotlinx.coroutines.NonDisposableHandle.parent
 
-class DisplayTaskAdapter(private val notes: List<Note?>?) : RecyclerView.Adapter<DisplayTaskAdapter.DisplayTaskViewHolder>() {
+class DisplayTaskAdapter(private val notes: List<Note?>?, var clicker: TaskClicker) : RecyclerView.Adapter<DisplayTaskAdapter.DisplayTaskViewHolder>() {
 
     inner class DisplayTaskViewHolder(private val binding: CreateNoteItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Note, context: Context) {
             // initialize the views
+            var ellipseButton = binding.createNoteItemEllipseButtonBtn
             binding.createNoteItemTitleTv.text = task.title
             binding.createNoteItemContentTv.text = task.content
             val drawable = binding.createNotePriorityIv.drawable
@@ -26,6 +26,12 @@ class DisplayTaskAdapter(private val notes: List<Note?>?) : RecyclerView.Adapter
                 else -> PriorityColor.HIGH
             }
             SetPriorityColor.setDrawableColor(context, drawable, priorityColor.getColor())
+            itemView.setOnClickListener {
+                clicker.onclickItem(task, adapterPosition)
+            }
+            ellipseButton.setOnClickListener {
+                clicker.onClickItemEllipses(task, adapterPosition, ellipseButton)
+            }
         }
     }
 
