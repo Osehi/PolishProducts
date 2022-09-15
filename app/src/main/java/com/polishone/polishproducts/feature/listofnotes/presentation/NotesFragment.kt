@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -79,7 +80,7 @@ class NotesFragment : Fragment(), TaskClicker {
 //                            for (item in ) {
 //
 //                            }
-                            displayTaskAdapter = DisplayTaskAdapter(allNotes)
+                            displayTaskAdapter = DisplayTaskAdapter(allNotes, this@NotesFragment)
                             myRecyclerView.adapter = displayTaskAdapter
                             displayTaskAdapter.notifyDataSetChanged()
                         }
@@ -119,7 +120,10 @@ class NotesFragment : Fragment(), TaskClicker {
     }
 
     override fun onclickItem(currentTask: Note, position: Int) {
-        TODO("Not yet implemented")
+        Toast.makeText(requireContext(),
+            "here is the item content clicked: ${currentTask.title}",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     override fun onClickItemEllipses(currentTask: Note, position: Int, view: View) {
