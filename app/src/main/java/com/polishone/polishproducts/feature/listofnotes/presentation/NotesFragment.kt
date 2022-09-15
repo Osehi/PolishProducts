@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class NotesFragment : Fragment() {
+class NotesFragment : Fragment(), TaskClicker {
     /**
      * declare views and variables
      */
@@ -116,5 +116,13 @@ class NotesFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onclickItem(currentTask: Note, position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onClickItemEllipses(currentTask: Note, position: Int, view: View) {
+        TODO("Not yet implemented")
     }
 }
