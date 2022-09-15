@@ -120,7 +120,8 @@ class NotesFragment : Fragment(), TaskClicker {
     }
 
     override fun onclickItem(currentTask: Note, position: Int) {
-        Toast.makeText(requireContext(),
+        Toast.makeText(
+            requireContext(),
             "here is the item content clicked: ${currentTask.title}",
             Toast.LENGTH_LONG
         ).show()
