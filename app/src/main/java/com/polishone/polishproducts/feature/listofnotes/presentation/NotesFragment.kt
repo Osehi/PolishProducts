@@ -125,6 +125,7 @@ class NotesFragment : Fragment(), TaskClicker {
             "here is the item content clicked: ${currentTask.title}",
             Toast.LENGTH_LONG
         ).show()
+        findNavController().navigate(R.id.taskDetailsFragment)
     }
 
     override fun onClickItemEllipses(currentTask: Note, position: Int, view: View) {

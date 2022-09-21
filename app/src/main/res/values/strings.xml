@@ -37,4 +37,5 @@
     <string name="userProfile_fragment_note_count">Number of Notes</string>
     <string name="userProfile_fragment_note_count_value">Count</string>
     <string name="userProfile_fragment_logOut">Log Out</string>
+    <string name="task_details_fragment_title">Task Details</string>
 </resources>
