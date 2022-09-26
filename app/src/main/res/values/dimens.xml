@@ -10,4 +10,5 @@
     <dimen name="userProfile_fragment_profile_title_txsize">48sp</dimen>
     <dimen name="userProfile_fragment_username_txsiz">22sp</dimen>
     <dimen name="taskDetails_fragment_title_txsz">20sp</dimen>
+    <dimen name="taskDetails_fragment_task_title_txsiz">24sp</dimen>
 </resources>

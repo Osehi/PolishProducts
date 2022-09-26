@@ -5,8 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.polishone.polishproducts.R
+import com.polishone.polishproducts.common.constants.DataConstant
+import com.polishone.polishproducts.common.utils.converter.PriorityConverter
 import com.polishone.polishproducts.databinding.FragmentTaskDetailsBinding
+import com.polishone.polishproducts.feature.listofnotes.data.model.Note
 
 class TaskDetailsFragment : Fragment() {
     /**
@@ -14,9 +19,12 @@ class TaskDetailsFragment : Fragment() {
      */
     private var _binding: FragmentTaskDetailsBinding? = null
     private val binding: FragmentTaskDetailsBinding get() = _binding!!
+    private lateinit var taskData: Note
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // capture the task details from bundle
+        taskData = arguments?.getParcelable<Note>(DataConstant.TASK_DATA)!!
     }
 
     override fun onCreateView(
@@ -32,13 +40,17 @@ class TaskDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // set data to views
+        binding.taskDetailsFragmentTaskTitleTv.text = taskData.title
+        binding.askDetailsFragmentTaskContentTv.text = taskData.content
+        binding.taskDetailsFragmentTaskPriorityTv.text = taskData.taskPriority?.let {
+            PriorityConverter.convertPriorityNumberToString(
+                it
+            )
+        }
         // on click on the back navigation
         binding.taskDetailsFragmentBackNavCv.setOnClickListener {
-            Snackbar.make(
-                binding.root,
-                "Clicked",
-                Snackbar.LENGTH_LONG
-            ).show()
+            findNavController().navigate(R.id.notesFragment)
         }
     }
 

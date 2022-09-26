@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".feature.taskdetails.presentation.TaskDetailsFragment">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -62,6 +63,36 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/taskDetails_fragment_task_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/task_details_fragment_title"
+        android:textAlignment="center"
+        android:textSize="@dimen/taskDetails_fragment_task_title_txsiz" />
+    <TextView
+        android:id="@+id/taskDetails_fragment_task_priority_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/taskDetails_fragment_task_priority"
+        android:textAlignment="center"
+        android:textSize="@dimen/taskDetails_fragment_task_title_txsiz" />
+    <TextView
+        android:id="@+id/askDetails_fragment_task_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/taskDetails_fragment_task_content"
+        android:textAlignment="center"
+        android:textSize="@dimen/taskDetails_fragment_task_title_txsiz" />
+
+
+d
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
