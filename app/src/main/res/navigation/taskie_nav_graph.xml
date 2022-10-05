@@ -28,4 +28,9 @@
         android:name="com.polishone.polishproducts.feature.userprofile.presentation.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/taskDetailsFragment"
+        android:name="com.polishone.polishproducts.feature.taskdetails.presentation.TaskDetailsFragment"
+        android:label="fragment_task_details"
+        tools:layout="@layout/fragment_task_details" />
 </navigation>

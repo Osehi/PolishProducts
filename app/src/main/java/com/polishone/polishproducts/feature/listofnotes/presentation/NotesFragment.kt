@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.R
+import com.polishone.polishproducts.common.constants.DataConstant
 import com.polishone.polishproducts.common.constants.Resource
 import com.polishone.polishproducts.databinding.FragmentNotesBinding
 import com.polishone.polishproducts.feature.listofnotes.data.model.Note
@@ -120,14 +122,35 @@ class NotesFragment : Fragment(), TaskClicker {
     }
 
     override fun onclickItem(currentTask: Note, position: Int) {
-        Toast.makeText(
-            requireContext(),
-            "here is the item content clicked: ${currentTask.title}",
-            Toast.LENGTH_LONG
-        ).show()
+        // add the task data to bundle
+        val bundle = Bundle()
+        bundle.putParcelable(DataConstant.TASK_DATA, currentTask)
+        findNavController().navigate(R.id.taskDetailsFragment, bundle)
     }
 
     override fun onClickItemEllipses(currentTask: Note, position: Int, view: View) {
-        TODO("Not yet implemented")
+        PopupMenu(view.context, view).run {
+            menuInflater.inflate(R.menu.task_menu, menu)
+            setOnMenuItemClickListener { item ->
+                when (item.title) {
+                    "view details" -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "View Details",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    "delete" -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "Delete",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+                true
+            }
+            show()
+        }
     }
 }
