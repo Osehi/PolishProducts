@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.polishone.polishproducts.R
 import com.polishone.polishproducts.common.constants.DataConstant
 import com.polishone.polishproducts.common.utils.converter.PriorityConverter
